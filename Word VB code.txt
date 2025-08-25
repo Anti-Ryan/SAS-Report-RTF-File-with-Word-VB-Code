@@ -1,0 +1,170 @@
+'*===============================================================================================*'
+'*
+'*  Drafted		: Anti
+'*  Date 		: 2025-08-24
+'*
+'*===============================================================================================*'
+
+'*-----------------------------------------------------------------------------------------------*'
+'*  样式读入 + 多级标题添加 ：一键式处理
+'*-----------------------------------------------------------------------------------------------*'
+
+Sub 标题样式()
+
+    Call 导入样式
+    ActiveDocument.Content.Font.Reset  ' 重置字体格式
+    
+    Call 添加多级标题
+    ActiveDocument.Fields.Update ' 域代码刷新
+
+End Sub
+
+'*-----------------------------------------------------------------------------------------------*'
+'*  导入样式 + 添加多级标题（注意下方word样式库路径的位置根据实际情况修订）
+'*-----------------------------------------------------------------------------------------------*'
+Sub 导入样式()
+
+    PA = ActiveDocument.Path
+    NA = ActiveDocument.Name
+    
+    For sn = 1 To 9
+        Application.OrganizerCopy Source:= _
+            PA & "\样式库.dotx", Destination _
+            :=PA & "\" & NA, Name:="t" & sn, Object:= _
+            wdOrganizerObjectStyles
+    Next
+    
+    ActiveDocument.Content.Font.Reset
+
+End Sub
+
+
+Sub 添加多级标题()
+'
+' 添加多级标题
+'
+'
+    With ListGalleries(wdOutlineNumberGallery).ListTemplates(1).ListLevels(1)
+        .NumberFormat = "%1."
+        .TrailingCharacter = wdTrailingTab
+        .NumberStyle = wdListNumberStyleArabic
+        .NumberPosition = CentimetersToPoints(0)
+        .Alignment = wdListLevelAlignLeft
+        .TextPosition = CentimetersToPoints(0.75)
+        .TabPosition = wdUndefined
+        .ResetOnHigher = 0
+        .StartAt = 14
+
+        .LinkedStyle = "t1"
+    End With
+    With ListGalleries(wdOutlineNumberGallery).ListTemplates(1).ListLevels(2)
+        .NumberFormat = "%1.%2."
+        .TrailingCharacter = wdTrailingTab
+        .NumberStyle = wdListNumberStyleArabic
+        .NumberPosition = CentimetersToPoints(0)
+        .Alignment = wdListLevelAlignLeft
+        .TextPosition = CentimetersToPoints(1)
+        .TabPosition = wdUndefined
+        .ResetOnHigher = 1
+        .StartAt = 1
+
+        .LinkedStyle = "t2"
+    End With
+    With ListGalleries(wdOutlineNumberGallery).ListTemplates(1).ListLevels(3)
+        .NumberFormat = "%1.%2.%3."
+        .TrailingCharacter = wdTrailingTab
+        .NumberStyle = wdListNumberStyleArabic
+        .NumberPosition = CentimetersToPoints(0)
+        .Alignment = wdListLevelAlignLeft
+        .TextPosition = CentimetersToPoints(1.25)
+        .TabPosition = wdUndefined
+        .ResetOnHigher = 2
+        .StartAt = 1
+
+        .LinkedStyle = "t3"
+    End With
+    With ListGalleries(wdOutlineNumberGallery).ListTemplates(1).ListLevels(4)
+        .NumberFormat = "%1.%2.%3.%4."
+        .TrailingCharacter = wdTrailingTab
+        .NumberStyle = wdListNumberStyleArabic
+        .NumberPosition = CentimetersToPoints(0)
+        .Alignment = wdListLevelAlignLeft
+        .TextPosition = CentimetersToPoints(1.5)
+        .TabPosition = wdUndefined
+        .ResetOnHigher = 3
+        .StartAt = 1
+
+        .LinkedStyle = "t4"
+    End With
+    With ListGalleries(wdOutlineNumberGallery).ListTemplates(1).ListLevels(5)
+        .NumberFormat = "%1.%2.%3.%4.%5."
+        .TrailingCharacter = wdTrailingTab
+        .NumberStyle = wdListNumberStyleArabic
+        .NumberPosition = CentimetersToPoints(0)
+        .Alignment = wdListLevelAlignLeft
+        .TextPosition = CentimetersToPoints(1.75)
+        .TabPosition = wdUndefined
+        .ResetOnHigher = 4
+        .StartAt = 1
+
+        .LinkedStyle = "t5"
+    End With
+    With ListGalleries(wdOutlineNumberGallery).ListTemplates(1).ListLevels(6)
+        .NumberFormat = "%1.%2.%3.%4.%5.%6."
+        .TrailingCharacter = wdTrailingTab
+        .NumberStyle = wdListNumberStyleArabic
+        .NumberPosition = CentimetersToPoints(0)
+        .Alignment = wdListLevelAlignLeft
+        .TextPosition = CentimetersToPoints(2)
+        .TabPosition = wdUndefined
+        .ResetOnHigher = 5
+        .StartAt = 1
+
+        .LinkedStyle = "t6"
+    End With
+    With ListGalleries(wdOutlineNumberGallery).ListTemplates(1).ListLevels(7)
+        .NumberFormat = "%1.%2.%3.%4.%5.%6.%7."
+        .TrailingCharacter = wdTrailingTab
+        .NumberStyle = wdListNumberStyleArabic
+        .NumberPosition = CentimetersToPoints(0)
+        .Alignment = wdListLevelAlignLeft
+        .TextPosition = CentimetersToPoints(2.25)
+        .TabPosition = wdUndefined
+        .ResetOnHigher = 6
+        .StartAt = 1
+
+        .LinkedStyle = "t7"
+    End With
+    With ListGalleries(wdOutlineNumberGallery).ListTemplates(1).ListLevels(8)
+        .NumberFormat = "%1.%2.%3.%4.%5.%6.%7.%8."
+        .TrailingCharacter = wdTrailingTab
+        .NumberStyle = wdListNumberStyleArabic
+        .NumberPosition = CentimetersToPoints(0)
+        .Alignment = wdListLevelAlignLeft
+        .TextPosition = CentimetersToPoints(2.5)
+        .TabPosition = wdUndefined
+        .ResetOnHigher = 7
+        .StartAt = 1
+
+        .LinkedStyle = "t8"
+    End With
+    With ListGalleries(wdOutlineNumberGallery).ListTemplates(1).ListLevels(9)
+        .NumberFormat = "%1.%2.%3.%4.%5.%6.%7.%8.%9."
+        .TrailingCharacter = wdTrailingTab
+        .NumberStyle = wdListNumberStyleArabic
+        .NumberPosition = CentimetersToPoints(0)
+        .Alignment = wdListLevelAlignLeft
+        .TextPosition = CentimetersToPoints(2.75)
+        .TabPosition = wdUndefined
+        .ResetOnHigher = 8
+        .StartAt = 1
+
+        .LinkedStyle = "t9"
+    End With
+    ListGalleries(wdOutlineNumberGallery).ListTemplates(1).Name = ""
+    Selection.Range.ListFormat.ApplyListTemplateWithLevel ListTemplate:= _
+        ListGalleries(wdOutlineNumberGallery).ListTemplates(1), _
+        ContinuePreviousList:=False, ApplyTo:=wdListApplyToWholeList, _
+        DefaultListBehavior:=wdWord10ListBehavior
+    ActiveDocument.Fields.Update
+End Sub
